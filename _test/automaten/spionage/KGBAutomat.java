@@ -13,8 +13,44 @@ public class KGBAutomat {
 	
 	public boolean teste(String pEingabe){
 		zustand = 0;
-		//TODO
-		return false;
+		for(int i=0;i<pEingabe.length();i++){
+			char x = pEingabe.charAt(i);
+			switch(zustand){
+				case 2:{
+					switch (x){
+						case '0':{
+							zustand = 2;
+						}
+						case '7': {
+							zustand = 3;
+						}
+						default:{
+							zustand = 0;
+						}
+					}
+				}
+				case 1:{
+					switch (x){
+						case '0':{
+							zustand = 2;
+						}
+						default: {
+							zustand = 0;
+						}
+					}
+				}
+				case 0:{
+					switch (x){
+						case '0':zustand = 1;
+						default:zustand = 0;
+					}
+				}
+				
+				
+			}
+		}
+		System.out.println(zustand);
+		return zustand==3;
 	}
 	
 	public static void main(String[] args) {
