@@ -5,22 +5,23 @@ import gui.GUI;
 /*
   Debugging
   Nutzen Sie den Debugger, um die Fehler in den folgenden Methoden zu finden.
-  •	Setzen Sie einen Haltepunkt in die erste Zeile der Methode.
-  •	„Steppen“ Sie Schritt für Schritt durch die Methode:
-  o	Handelt das Programm erwartungsgemäß?
-  o	Sind die Variablen erwartungsgemäß belegt?
+  ï¿½	Setzen Sie einen Haltepunkt in die erste Zeile der Methode.
+  ï¿½	ï¿½Steppenï¿½ Sie Schritt fï¿½r Schritt durch die Methode:
+  o	Handelt das Programm erwartungsgemï¿½ï¿½?
+  o	Sind die Variablen erwartungsgemï¿½ï¿½ belegt?
  */
 public class DebuggingSchleifenRekursiv {
 
 	/**
-	 * Fehler für a = 12 und b = 12
+	 * Fehler fï¿½r a = 12 und b = 12
 	 */
 	private String gleichFehler(int a, int b){
 		String ergebnis = "Keine Ahnung";
 		if(a==b){
 			ergebnis = "gleich!";
+		}else{
+			ergebnis = "NICHT gleich";
 		}
-		ergebnis = "NICHT gleich";
 		return ergebnis;
 	}
 
@@ -30,7 +31,7 @@ public class DebuggingSchleifenRekursiv {
 	 */
 	private int fakultaetFehler(int n){
 		int ergebnis = 1;
-		for(int i=0; i<=n; i++){
+		for(int i=2; i<=n; i++){
 			ergebnis = ergebnis*i;
 		}
 		return ergebnis;
@@ -42,7 +43,7 @@ public class DebuggingSchleifenRekursiv {
 	private int fakultaetRekursivFehler(int n){
 		int ergebnis = 0;
 		//Abbruchbedingung
-		if(n>=0){
+		if(n==0){
 			ergebnis = 1;
 		}
 		else{
@@ -57,8 +58,7 @@ public class DebuggingSchleifenRekursiv {
 	 */
 	private int potenzFehler(int a, int b){
 		int ergebnis = 1;
-		for(int zaehler=1; zaehler<=b; zaehler++);
-		{
+		for(int i=1; i<=b; i++){
 			ergebnis = ergebnis * a;
 		}
 		return ergebnis;
@@ -71,8 +71,9 @@ public class DebuggingSchleifenRekursiv {
 		boolean ergebnis = false;
 		for(int i=0; i<namen.length; i++){
 			String derName = namen[i];
-			if(derName == pName){
+			if(derName.equals(pName)){
 				ergebnis = true;
+				break;
 			}
 			else{
 				ergebnis = false;
@@ -87,7 +88,7 @@ public class DebuggingSchleifenRekursiv {
 		for(int i=0; i<namen.length; i++){
 			String derName = namen[i];
 			if(derName.equals(pName)){
-				ergebnis = true;
+				return true;
 			}
 			else{
 				ergebnis = false;
@@ -99,7 +100,7 @@ public class DebuggingSchleifenRekursiv {
 	
 	//Fehler fuer "Maria"
 	public boolean enthaeltFehler3(String pName){
-		for(int i=0; i>namen.length; i++){
+		for(int i=0; i<namen.length; i++){
 			String derName = namen[i];
 			if(derName.equals(pName)){
 				return true;
@@ -110,9 +111,9 @@ public class DebuggingSchleifenRekursiv {
 	
 	//Fehler fuer "Xaver" (der ist gar nicht dabei
 	public boolean enthaeltFehler4(String pName){
-		for(int i=4; i<namen.length; i++){
+		for(int i=0; i<namen.length; i++){
 			String derName = namen[i];
-			if(derName.equals(pName));{
+			if(derName.equals(pName)){
 				return true;
 			}
 		}
