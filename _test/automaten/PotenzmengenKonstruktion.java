@@ -3,6 +3,10 @@ package _test.automaten;
 import java.util.HashMap;
 import java.util.TreeSet;
 
+import graph.Edge;
+import graph.Graph;
+import graph.GraphWithViewer;
+import graph.Vertex;
 import linear.List;
 import linear.ListWithViewer;
 
@@ -50,6 +54,7 @@ public class PotenzmengenKonstruktion {
 	public void potenzmengenKonstruktion() {
 		System.out.println("Potenzmengenkonstruktion wird durchgefuehrt");
 		ergebnisAutomat = new Automat();
+		Graph graph = new GraphWithViewer();
 		Automat pruefAutomat = new Automat();
 		Automat fertigerAutomat = new Automat();
 		String startzustand = NEA.startzustand();
@@ -57,8 +62,11 @@ public class PotenzmengenKonstruktion {
 		List<String> zustandsListeErgebnis= new ListWithViewer<>();
 		String[] alphabet = NEA.alphabet();
 		zustandsListeErgebnis.append(NEA.startzustand());
+		Vertex v = new Vertex(startzustand);
+		graph.addVertex(v);
 		pruefAutomat.zustandHinzufuegen(startzustand);
 		for(zustandsListeErgebnis.toFirst();zustandsListeErgebnis.hasAccess();zustandsListeErgebnis.next()){
+			Vertex from_v = graph.getVertex(zustandsListeErgebnis.getContent());
 			String[] zustaendeAufgeiteilt = NEA.aufteilen(zustandsListeErgebnis.getContent());
 			for(int k=0; k<alphabet.length; k++){
 				String neuerLinkerEintrag = "";
@@ -68,6 +76,9 @@ public class PotenzmengenKonstruktion {
 				}
 				String gesauebert = NEA.alphabetischOrdnenUndTrennzeichenSaeubern(neuerLinkerEintrag);
 				ergebnisAutomat.uebergangHinzufuegen(zustandsListeErgebnis.getContent(), alphabet[k],gesauebert);
+				Vertex to_v = new Vertex(gesauebert);
+				graph.addVertex(to_v);
+				graph.addEdge(new Edge(from_v, to_v, k));
 				if(ergebnisAutomat.zustandVorhanden(gesauebert)){
 					continue;
 				}
@@ -78,6 +89,7 @@ public class PotenzmengenKonstruktion {
 			
 		}
 	}
+
 	
 	public static void main(String[] args) {
 		new PotenzmengenKonstruktion();
