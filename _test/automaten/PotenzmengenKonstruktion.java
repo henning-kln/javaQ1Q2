@@ -56,7 +56,6 @@ public class PotenzmengenKonstruktion {
 		ergebnisAutomat = new Automat();
 		Graph graph = new GraphWithViewer();
 		Automat pruefAutomat = new Automat();
-		Automat fertigerAutomat = new Automat();
 		String startzustand = NEA.startzustand();
 		ergebnisAutomat.startzustandSetzen(startzustand);
 		List<String> zustandsListeErgebnis= new ListWithViewer<>();
