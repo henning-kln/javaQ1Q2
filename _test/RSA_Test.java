@@ -53,6 +53,31 @@ public class RSA_Test implements Serializable{
       q = findePrimzahl(stellenzahl);
    }
    
+   /**
+    * @param m
+    */
+   public void setM(String m){
+      String ue = "";
+      m = m.toUpperCase();
+      for(char c:m.toCharArray()){
+         ue += (int)c;
+      }
+      M = new BigInteger(ue);
+   }
+
+   public String getM(){
+      String s = Mentschluesselt.toString();
+      String ue = "";
+      for(int i = 0; i < s.length(); i+=2){
+         ue += (char)Integer.parseInt(s.substring(i, i+2));
+      }
+      return ue;
+
+
+
+   }
+
+
    public void berechneN(){
 	   N = p.multiply(q);
    }
