@@ -21,7 +21,7 @@ public class RSA_Test implements Serializable{
    private BigInteger q = new BigInteger("11");
    private BigInteger N;
    private BigInteger phi;
-   private BigInteger e = new BigInteger("7");
+   private BigInteger e = new BigInteger("65537");
    private BigInteger M = new BigInteger("88");
    private BigInteger C;
    private BigInteger d;
@@ -37,35 +37,40 @@ public class RSA_Test implements Serializable{
     * @param certainty
     * @return
     */
-   public BigInteger findePrimzahl(int stellenzahl, int certainty) {
+   public BigInteger findePrimzahl(int stellenzahl) {
 		// TODO implementieren!
-	   BigInteger ergebnis = new BigInteger("-1");
-		return ergebnis;
+	   String r = "";
+      for(int i =0;i<stellenzahl;i++){
+         r += random.nextInt(10); 
+      }
+
+		return new BigInteger(r).nextProbablePrime();
    }
    
-   public void p_und_q_finden(int stellenzahl, int certainty){
+   public void p_und_q_finden(int stellenzahl){
 	   //TODO
-	   p = new BigInteger("12345");
+	   p = findePrimzahl(stellenzahl);
+      q = findePrimzahl(stellenzahl);
    }
    
    public void berechneN(){
-	   //TODO
+	   N = p.multiply(q);
    }
    
    public void berechnePhi(){
-	   //TODO
+	   phi = (p.subtract(b1)).multiply(q.subtract(b1));
    }
    
    public void berechneC(){
-	   //TODO
+	   C = M.modPow(e, N);
    }
    
    public void berechneD(){
-	   //TODO
+	   d = e.modInverse(phi); 
    }
    
    public void berechneMentschluesselt(){
-	   //TODO
+	   Mentschluesselt = C.modPow(d, N);
    }
       
    public String zufallsZifferString(){
