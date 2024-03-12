@@ -47,6 +47,10 @@ public class RSA_Test implements Serializable{
 		return new BigInteger(r).nextProbablePrime();
    }
    
+   /**
+    * erzeugt zwei Primzahlen p und q mit stellenzahl Stellen
+    * @param stellenzahl
+    */
    public void p_und_q_finden(int stellenzahl){
 	   //TODO
 	   p = findePrimzahl(stellenzahl);
@@ -54,6 +58,7 @@ public class RSA_Test implements Serializable{
    }
    
    /**
+    * erzeugt eine zufaellige Zahl mit stellenzahl Stellen und
     * @param m
     */
    public void setM(String m){
@@ -65,6 +70,10 @@ public class RSA_Test implements Serializable{
       M = new BigInteger(ue);
    }
 
+   /**
+    * 
+    * @return
+    */
    public String getM(){
       String s = Mentschluesselt.toString();
       String ue = "";
@@ -78,26 +87,44 @@ public class RSA_Test implements Serializable{
    }
 
 
+   /**
+    *
+    */
    public void berechneN(){
 	   N = p.multiply(q);
    }
    
+   /**
+    * 
+    */
    public void berechnePhi(){
 	   phi = (p.subtract(b1)).multiply(q.subtract(b1));
    }
    
+   /**
+    * 
+    */
    public void berechneC(){
 	   C = M.modPow(e, N);
    }
    
+   /**
+    * 
+    */
    public void berechneD(){
 	   d = e.modInverse(phi); 
    }
    
+   /**
+    * 
+    */
    public void berechneMentschluesselt(){
 	   Mentschluesselt = C.modPow(d, N);
    }
       
+   /**
+    * @return
+    */
    public String zufallsZifferString(){
 	   int ziffer = random.nextInt(10);
 	   return ""+ziffer;
