@@ -30,12 +30,12 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 		return myTree.getContent();
 	}
 
-	private BinarySearchTree<ContentType> getLeftTree() {
+	public BinarySearchTree<ContentType> getLeftTree() {
 		if(myTree.getLeftTree() == null) return null;
 		return new BinarySearchTree<>(this.myTree.getLeftTree());
 	}
 
-	private BinarySearchTree<ContentType> getRightTree() {
+	public BinarySearchTree<ContentType> getRightTree() {
 		if(myTree.getRightTree() == null) return null;
 		return new BinarySearchTree<>(this.myTree.getRightTree());
 	}
