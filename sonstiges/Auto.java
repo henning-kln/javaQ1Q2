@@ -1,6 +1,8 @@
 package sonstiges;
 
-public class Auto {
+import baeume.ComparableContent;
+
+public class Auto implements ComparableContent<Auto> {
 	private String marke;
 	private String farbe;
 	private int ps;
@@ -90,7 +92,21 @@ public class Auto {
 		}
 		return marke + ", " + ps + " PS," + preis + " Euro, " + tankStand + " von " + tankGroesse + " Liter, Klima " + an;
 	}
+
+	@Override
+	public boolean isGreater(Auto pAuto) {
+		return pAuto.getPs()<this.getPs();
+	}
+
+	@Override
+	public boolean isEqual(Auto pAuto){
+		return pAuto.getPs()==this.getPs();
+	}
 	
+	@Override
+	public boolean isLess(Auto pAuto){
+		return pAuto.getPs()> this.getPs();
+	}
 	
 	
 	
