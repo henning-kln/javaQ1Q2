@@ -48,10 +48,28 @@ public class BinarySearchTreeTestAutos {
 
 	public Auto finde(String marke){
 		Auto erg = null;
-		Auto a = new Auto(marke, "", 0, 0, 0);
-		erg = autosBaum.search(a);
-
+		Auto a = new Auto(marke, "", 0,0,0);
+		erg = finde(a, autosBaum);
 		return erg;
+	}
+
+	public Auto finde(Auto a, BinarySearchTree<Auto> pBaum){
+		if(pBaum.isEmpty()){
+			return null;
+		}
+		if(pBaum.getContent().getMarke().equals(a.getMarke())){
+			return pBaum.getContent();
+		}
+		Auto l = finde(a, pBaum.getLeftTree());
+		if(l != null){
+			return l;
+		}
+		Auto r = finde(a, pBaum.getRightTree());
+		if(r != null){
+			return r;
+		}
+		return null;
+
 	}
 	
 	public void loeschen(int pPs) {
@@ -59,6 +77,11 @@ public class BinarySearchTreeTestAutos {
 		autosBaum.remove(a);
 	}
 	
+	public void loeschen(String marke) {
+		Auto a = finde(marke);
+		loeschen(a.getPs());
+	}
+
 
 	/**
 	 * gibt die Elemente von autosBaum sortiert zurueck
